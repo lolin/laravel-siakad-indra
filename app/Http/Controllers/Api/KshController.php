@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ScheduleResource;
-use App\Models\Schedule;
-use App\Models\StudentSchedule;
+use App\Http\Resources\KhsResource;
+use App\Models\Khs;
 use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class KshController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $user=$request->user();
-        $schdeule= StudentSchedule::where('student_id','=',$user->id)->get();
-        return ScheduleResource::collection( $schdeule->load('schedule','schedule.subject','schedule.subject.lecturer') );
+      $user=$request->user();
+      $khsAll=Khs::where('student_id',$user->id)->paginate(10)->load('subject','student');
+      return KhsResource::collection($khsAll);
     }
 
     /**

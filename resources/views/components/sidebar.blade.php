@@ -28,5 +28,25 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Subjects</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('subject') ? 'active' : '' }}'>
+                        <a class="nav-link"
+                            href="{{ url('subject') }}">Subject List</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Schedule</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('schedule') ? 'active' : '' }}'>
+                        <a class="nav-link"
+                            href="{{ url('schedule') }}">Schedule List</a>
+                    </li>
+                </ul>
+            </li>
     </aside>
 </div>

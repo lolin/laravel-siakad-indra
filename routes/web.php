@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +25,11 @@ Route::middleware(['auth'])->group(function(){
         return view('pages.app.dashboard-siakad',['type_menu'=>'']);
     });
 
-    Route::resource('user', UserController::class);;
+    Route::resource('user', UserController::class);
+    Route::resource('subject', SubjectController::class);
+    Route::resource('schedule', ScheduleController::class);
+    Route::get('generate-qrcode/{schedule}', [ScheduleController::class,'qrcode'])->name('generate-qrcode');
+    Route::put('generate-qrcode-update/{schedule}', [ScheduleController::class,'generateQrCodeUpdate'])->name('generate-qrcode-update');
 });
 Route::get('/login',function(){
     return view('pages.auth.auth-login');
